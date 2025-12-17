@@ -37,9 +37,11 @@ jobs:
           pip install mlflow
       
       # Run as a mlflow project
-      - name: Run mlflow project
+      - name: Run MLflow Project
         run: |
-          mlflow run MLproject --env-manager=local 
+          cd MLproject
+          export MLFLOW_TRACKING_URI=file://$(pwd)/mlruns
+          mlflow run . --env-manager=local 
  
       # Save models to GitHub Repository
       - name: Save mlruns to repo
